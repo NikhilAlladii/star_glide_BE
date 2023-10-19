@@ -33,23 +33,23 @@ app.get("/homes", async (req, res) => {
   }
 });
 
-app.get("/home/:id", (req, res) => {
-  const homeId = req.params.id;
+// app.get("/home/:id", (req, res) => {
+//   const homeId = req.params.id;
 
-  console.log("home", homeId);
-  Home.findById(homeId)
-    .exec()
-    .then((home) => {
-      if (!home) {
-        return res.status(404).json({ error: "Home not found" });
-      }
-      return res.json(home);
-    })
-    .catch((err) => {
-      console.error(err);
-      return res.status(500).json({ error: "Internal server error" });
-    });
-});
+//   console.log("home", homeId);
+//   Home.findById(homeId)
+//     .exec()
+//     .then((home) => {
+//       if (!home) {
+//         return res.status(404).json({ error: "Home not found" });
+//       }
+//       return res.json(home);
+//     })
+//     .catch((err) => {
+//       console.error(err);
+//       return res.status(500).json({ error: "Internal server error" });
+//     });
+// });
 
 app.listen(3001, () => {
   console.log("serverr running;");
