@@ -18,9 +18,6 @@ mongoose
   )
   .then(() => {
     console.log("DB Connected");
-  })
-  .catch((err) => {
-    console.log(err);
   });
 
 app.get("/homes", async (req, res) => {
@@ -33,23 +30,21 @@ app.get("/homes", async (req, res) => {
   }
 });
 
-// app.get("/home/:id", (req, res) => {
-//   const homeId = req.params.id;
-
-//   console.log("home", homeId);
-//   Home.findById(homeId)
-//     .exec()
-//     .then((home) => {
-//       if (!home) {
-//         return res.status(404).json({ error: "Home not found" });
-//       }
-//       return res.json(home);
-//     })
-//     .catch((err) => {
-//       console.error(err);
-//       return res.status(500).json({ error: "Internal server error" });
-//     });
-// });
+app.get("/home/:id", (req, res) => {
+  const homeId = req.params.id;
+  Home.findById(homeId)
+    .exec()
+    .then((home) => {
+      if (!home) {
+        return res.status(404).json({ error: "Home not found" });
+      }
+      return res.json(home);
+    })
+    .catch((err) => {
+      console.error(err);
+      return res.status(500).json({ error: "Internal server error" });
+    });
+});
 
 app.listen(3001, () => {
   console.log("serverr running;");
